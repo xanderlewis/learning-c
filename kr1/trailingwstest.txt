@@ -1,0 +1,9 @@
+This is to test the removal of trailing whitespace from lines.         
+Let's leave some extra tabs here...		
+and some blank lines...
+
+
+OK!
+
+Did it work? 
+Hopefully.
