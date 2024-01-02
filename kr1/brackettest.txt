@@ -1,0 +1,19 @@
+Testing bracket balance checker.
+
+// Stuff
+{
+	{
+		{
+		}
+	}
+}
+
+// More stuff
+
+/* ignore this! }}} */
+
+// and this... {{
+
+But don't ignore this: {
+
+We should end up with one bracket that we've forgotten to close.
