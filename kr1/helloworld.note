@@ -1,0 +1,11 @@
+Just a note on the hello world program I just wrote in C.
+
+In K&R, the main function didn't have a type.
+
+Well, I tried doing it that way and it compiled -- but with a warning.
+
+Apparently it defaults to int.
+
+Interestingly, even if you don't actually return anything it still compiles without a complaint.
+
+Of course, I could choose to return 0 or something.. I guess.. but the book hasn't talked about that yet.

@@ -1,0 +1,9 @@
+Another note on the hello world program... well, about the printf library function incldued in stdio.h.
+
+If I remember correctly, its type is something like int (char *str ...) or something.
+
+So it has return type int (I guess it returns an exit code or something?) and it takes an argument called str that is of type pointer to a char.
+
+That makes sense to me, because a string in C is just an array of chars, which itself is just like a pointer to a char with some continguous memory addresses allocated for further chars in the string. So str is just a memory address; the address where the first char in the string we want to print is stored. Printf then looks along these addresses to read all of it? I have no idea really how this works yet.
+
+Anyway, I'll keep reading...

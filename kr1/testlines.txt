@@ -1,0 +1,5 @@
+Let's write some lines to test my wc clone.
+Of course, it doesn't take any options (or even arguments).
+But it reads from stdin and outputs the number of lines, words and characters.
+Let's put this file in and compare the output to what wc (in its default state) gives.
+Try some tabs as well: tabs	are	fun	aren't	they.
