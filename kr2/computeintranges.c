@@ -13,6 +13,8 @@ int main() {
 	
 	int max_tmp = test_max, max_old;
 	int min_tmp = test_min, min_old;
+	// NOTE: this could be made more efficient by jumping straight to the expected overflow value each time and then dropping back once we've overflowed,
+	// but I think it's easier to understand this way.
 	for (int n = 0; max_tmp > 0; n++) {
 		// Try approaching new wraparound (overflow?) points
 		max_tmp = pow(2, 8*n - 1) - 1;

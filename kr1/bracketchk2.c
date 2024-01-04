@@ -7,6 +7,8 @@
 // ...but if you close more brackets than you've opened you're screwed and can't recover.
 // So we count brackets as before, but if the sum ever goes negative (too many right brackets) we stop.
 
+// Pleasingly, of course, you can run this program on itself. ;-)
+
 #include <stdio.h>
 
 #define OUT 0
