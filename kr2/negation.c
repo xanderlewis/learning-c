@@ -1,5 +1,5 @@
 // The unary negation operator
-// 0 is false; anything nonzero is true
+// 0 is false; anything nonzero is true (freedom to be *anything* nonzero is quite nice because it lets us implement && as multiplication and || as addition)
 // swaps true and false, therefore maps 0 to something nonzero (let's choose 1) and maps anything nonzero to 0.
 
 #include <stdio.h>
@@ -21,6 +21,7 @@ int main() {
 	printf("%d\n", result);
 
 	result = neg(neg(1 == 1)); // this should be true i.e. nonzero
+				   // !!(true)
 	printf("%d\n", result);
 	return 0;
 }

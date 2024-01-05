@@ -7,9 +7,11 @@
 
 int main() {
 	// Sizes of integral types
-	printf("chars range from %d to %d,\n", CHAR_MIN, CHAR_MAX);
+	printf("(signed) chars range from %d to %d,\n", CHAR_MIN, CHAR_MAX);
+	printf("unsigned chars range from 0 to %d,\n", UCHAR_MAX);
 	printf("shorts range from %d to %d,\n", SHRT_MIN, SHRT_MAX);
 	printf("ints range from %d to %d,\n", INT_MIN, INT_MAX);
+	printf("(unsigned) ints range from 0 to %u,\n", UINT_MAX);
 	printf("and longs range from %ld to %ld.\n", LONG_MIN, LONG_MAX);
 	// Sizes of floating point variables (from float.h)
 	printf("floats range from %f to %f.\n", FLT_MIN, FLT_MAX);
