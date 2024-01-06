@@ -13,16 +13,15 @@ int my_strlen(char s[]) {
 
 /* NOTE: 'x' and "x" are not the same.
          'x' is an integer corresponding to the letter x in the machine's character set (probably a single byte);
-	 "x" is a character array with elements this integer and a '\0' -- because strings are null-terminated. */
+	 "x" is a character array with elements: this integer, and a '\0' -- because strings are null-terminated. */
 
 // Test the two functions
 int main() {
 	// Get string from stdin (max length 100)
-	char s[100];
-	char c;
-	for (int i = 0; i < 100 && (c = getchar()) != '\n' && c != EOF; i++) {
+	char s[101], c;
+	for (int i = 0; i < 100 && (c = getchar()) != '\n' && c != EOF; i++)
 		s[i] = c;
-	}
+	s[i] = '\0'; // make sure input string is null-terminated (there may be garbage after this though)
 
 	// Compute length
 	printf("Length according to strln is %ld\n", strlen(s));
