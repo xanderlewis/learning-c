@@ -1,0 +1,12 @@
+// processes an array, skipping negative elements.
+
+...
+for (i = 0; i < n; i++) {
+	if (a[i] < 0) /* skip negative elements */
+		continue; /* (go back to the test at the top of the loop) */
+	... /* do positive elements */
+}
+...
+
+// useful for when the bit that processes the positive elements is large, so we can avoid indenting the whole of the block
+// (which is what we'd have to do if we enclosed it in an else { } block, or something.
