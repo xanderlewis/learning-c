@@ -1,10 +1,9 @@
-#include <ctype.h> /* (for isdigit function) */
-#include <math.h> /* (for pow function) */
+#include <ctype.h>
 
-/* atof: convert string s to double (also handles scientific notation of the form 123.45e-6) */
+/* atof: convert string s to double */
 double atof(char s[]) {
 	double val, power;
-	int i, e, sign, esign;
+	int i, sign;
 
 	// Skip whitespace
 	for (i = 0; isspace(s[i]); i++)
@@ -25,16 +24,5 @@ double atof(char s[]) {
 		// Record how many digits there were after the decimal point in order that we can divide later
 		power *= 10.0;
 	}
-
-	// Handle 'scientific' notation
-	if (s[i] == 'e' || s[i] == 'E')
-		i++;
-	else
-		return sign * val / power;
-
-	// Extract exponent
-	esign = (s[i++] == '-') ? -1 : 1;
-	e = s[i];
-
-	return (sign * val / power) * pow(10, esign * e);
+	return sign * val / power;
 }
