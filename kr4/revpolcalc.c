@@ -10,17 +10,9 @@
 
 #define MAXOP 100 /* max size of operand or operator (that is, the max length of an input number) */
 #define NUMBER '0' /* signal that a number was found */
-
 #define MAXVAL 100 /*maximum depth of val stack */
 
-// Stack-related variables
-int sp = 0; /* next free (empty) stack position -- 'stack pointer' */
-double val[MAXVAL]; /* value stack */
-
 // Function declarations for main
-int getch(void);
-void ungetch(int);
-
 int getop(char []);
 void push(double);
 double pop(void);
@@ -58,7 +50,7 @@ int main() {
 				if (op2 != 0.0)
 					push(pop() / op2);
 				else
-					fprintf(stderr, "error: zero divisior\n");
+					fprintf(stderr, "error: zero divisior.\n");
 				break;
 			case '%':
 				// pop two operands and push their modulus back
@@ -67,7 +59,7 @@ int main() {
 				break;
 			case 'p':
 				// Print the top of the stack without popping
-				printf("%lf", op1 = pop());
+				printf("\t%lf", op1 = pop());
 				push(op1);
 				break;
 			case 's':
@@ -79,18 +71,26 @@ int main() {
 				// Clear the stack
 				clear();
 				break;
+			case 'q':
+				// Quit program
+				return 0;
+				break; // (obviously not really needed)
 			case '\n':
 				// pop the top of the stack and write it to stdout.
 				printf("\t%.8lf\n", pop());
 				break;
 			default:
-				printf("error: unknown command %s\n", s);
+				printf("error: unknown command %s.\n", s);
 				break;
 
 		}
 	}
 	return 0;
 }
+
+// Stack-related variables
+int sp = 0; /* next free (empty) stack position -- 'stack pointer' */
+double val[MAXVAL]; /* value stack */
 
 /* push: push f onto value stack */
 void push(double f) {
@@ -107,7 +107,7 @@ double pop(void) {
 	if (sp > 0)
 		return val[--sp]; /* Decrement stack pointer *first*, and then return the value it points to */
 	else {
-		printf("error: stack empty\n");
+		fprintf(stderr, "error: stack empty.\n");
 		return 0.0;
 	}
 }
@@ -117,11 +117,15 @@ void clear(void) {
 	sp = 0;
 }
 
+// Function declarations (visible to getop)
+int getch(void);
+void ungetch(int);
+
 /* getop: get next operator or numeric operand */
 int getop(char s[]) {
 	int i, c;
 	
-	// Skip leading whitespace
+	// Skip leading whitespace (eventually storing the first nonblank char at s[0])
 	while ((s[0] = c = getch()) == ' ' || c == '\t')
 		;
 
@@ -163,7 +167,7 @@ int getch(void) { /* get a (possibly pushed back) character */
 
 void ungetch(int c) { /* push character back on input */
 	if (bufp >= BUFSIZE)
-		fprintf(stderr, "ungetch: too many characters\n");
+		fprintf(stderr, "ungetch: too many characters.\n");
 	else
 		buf[bufp++] = c; /* store char in buffer (at index bufp) and then increment buffer pointer */
 }
