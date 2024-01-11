@@ -4,7 +4,15 @@
 // thing during compilation. So the compiled program is not even doing any size calculation!
 // Hence, we need not enclose the argument in brackets.
 
+
+#include <stdio.h>
+#include <limits.h>
+
 int main() {
-	int a;
-	return sizeof a; // We got a return value of 4. So 4 bytes I guess.
+	printf("ints have size %lu\n", sizeof(int));
+	printf("long (int)s have size %lu\n", sizeof(long int));
+	printf("short (ints)s have size %lu\n", sizeof(short int));
+	printf("chars have size %lu\n", sizeof(char));
+	printf("pointers to chars have size %lu (%lu bits)\n", sizeof(char*), CHAR_BIT * sizeof(char*)); // not immediately sure if this will work...
+	printf("pointers to ints have size %lu\n", sizeof(int*)); // should be the same as for char, if anything...
 }
