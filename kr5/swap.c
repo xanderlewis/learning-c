@@ -10,7 +10,7 @@ void swap_not(int x, int y) { /* WRONG */
 void swap(int *px, int *py) {
 	int temp;
 
-	// We derefence the pointer px to access the thing it points to (x)
+	// We dereference the pointer px to access the thing it points to (x)
 	temp = *px;
 	// ..and we dereference x on the other size of the equality, too, to set the value of x to that pointed to by py
 	*px = *py;
