@@ -1,21 +1,23 @@
 #include <stdio.h>
 
 int main() {
+	// try putting some char (hex) literals to stdout
 	putchar('\x57');
 	putchar('\x41');
 	putchar('\x56');
 	putchar('\x45');
 
+	// try putting an int expressed in hex
 	int a;
 	a = 0xff;
 	putchar(a);
 
+	// try putting some chars expressed in hex
 	char b, c, d, e;
 	b = 0xde;
 	c = 0xad;
 	d = 0xbe;
 	e = 0xef;
-
 	putchar(b);
 	putchar(c);
 	putchar(d);

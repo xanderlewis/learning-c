@@ -1,0 +1,5 @@
+I think this is where things like stdio.h are being found when I compile C programs:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include
+
+(under macOS Sonoma, anyway)
