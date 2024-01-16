@@ -17,9 +17,9 @@ int main() {
 	signal(SIGKILL, handle_sigkill); // will this work? or will it just get ruthlessly killed?
 	
 	// indeed, it seems like we can't handle a SIGKILL.
-
-	for (int i = 1;; i++) {
-		printf("nothing (%d)!\n", i);
+	int i = 1;
+	while (1) {
+		printf("nothing (%d)!\n", i++);
 		usleep(100000); // 100ms
 	}
 
