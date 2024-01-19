@@ -29,6 +29,10 @@ int main() {
 	// also, sizeof should behave differently
 	printf("sizeof(a): %lu\n", sizeof(a)); // should be 16 (* sizeof(char) = 1)
 	printf("sizeof(&a): %lu\n", sizeof(&a)); // should be 8 (on a 64-bit machine)
+	
+	// another difference between pointers and arrays:
+	// assigning something new to an array is illegal; it's fine for a pointer.
+	// we can also do arithmetic like p++ if p is a pointer, but not if it's an array.
 
 	return 0;
 }
