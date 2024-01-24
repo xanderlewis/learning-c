@@ -1,5 +1,7 @@
 /* interprocess communication using signals */
-/* signals are intended to be used to indicate that an 'event has occurred', but here we try to (ab)use them (as a deliberately weird hack) to transmit data a la pipes or sockets. */
+/* signals are intended to be used to indicate that an 'event has occurred',
+ * but here we try to (ab)use them (as a deliberately weird hack) to
+ * transmit data a la pipes or sockets. */
 
 // (spawn two copies of this program and use one to talk to the other)
 
@@ -7,12 +9,14 @@
 #include <unistd.h>
 #include <signal.h>
 #include <math.h>
+#include <stdlib.h>
 
 // we'll use these two (arbitrarily chosen for their catchability) signals to represent 0 and 1
 #define SIG_0 SIGHUP
 #define SIG_1 SIGINFO
 
-#define DELAY_MICROSECONDS 5000 // 0.005s, supposedly.
+#define DELAY_MICROSECONDS 5000
+/* (0.005s per bit. works with 100 microseconds; 0 produces garbledness.) */
 
 char nextbyte;
 int currexp = 0;
@@ -40,6 +44,12 @@ void recone(int n) {
 	}
 }
 
+void recintr(int n) {
+	// recieved an interrupt (probably by doing Ctrl-C)
+	printf("\ngoodbye ;-)\n");
+	exit(0);
+}
+
 int main(void) {
 	pid_t target_pid;
 	int i;
@@ -48,6 +58,8 @@ int main(void) {
 	// set up handlers for incoming bits
 	signal(SIG_0, reczero);
 	signal(SIG_1, recone);
+
+	signal(SIGINT, recintr);
 
 	// get target PID from user
 	printf("enter target PID: ");
