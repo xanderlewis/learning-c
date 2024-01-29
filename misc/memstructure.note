@@ -1,4 +1,4 @@
-'a computer program memory can be largely categorised into two sections: read-only and read/write.'
+'computer program memory can be largely categorised into two sections: read-only and read/write.'
 
 **code segment** ('text segment'): executable code, read-only, fixed size.
 
