@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <ncurses.h>
 
 #define NUM_CELLS   32768
 #define PROG_SIZE   32768
@@ -54,9 +53,9 @@ int main(int argc, char **argv) {
 	running = 1;
 	while (running) {
 		// Give visual indication of current state.
-		bf_show_state();
+		//bf_show_state();
 		//getchar();
-		usleep(1000000 / CLOCK_RATE);
+		//usleep(1000000 / CLOCK_RATE);
 
 		// Interpret next instruction.
 		switch (*ip) {
@@ -73,8 +72,8 @@ int main(int argc, char **argv) {
 				(*cp)--;
 				break;
 			case '.':
-				printf("\nOUTPUT: 0x%02x\n\n", *cp);
-				//printf("%c", *cp);
+				//printf("\nOUTPUT: 0x%02x\n\n", *cp);
+				printf("%c", *cp);
 				break;
 			case ',':
 				printf("input:");
@@ -91,6 +90,7 @@ int main(int argc, char **argv) {
 						else if (*ip == ']')
 							bl--;
 					}
+					ip--;
 				}
 				break;
 			case ']':
@@ -103,6 +103,7 @@ int main(int argc, char **argv) {
 						else if (*ip == ']')
 							bl--;
 					}
+					ip++;
 				}
 				break;
 		}
@@ -125,6 +126,7 @@ int main(int argc, char **argv) {
 #define BK_BLU            "\x1B[44m"
 #define MAG               "\x1B[35m"
 #define RESET             "\x1B[0m"
+
 
 /* Give a visual indication of the current state of the program and data. */
 void bf_show_state(void) {
