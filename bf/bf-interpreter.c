@@ -10,10 +10,14 @@
 #define SHOW_CELLS  12
 #define SHOW_PROG   128
 #define CLOCK_RATE  50 // (Hz)
+#define OPTION_CHARS "sq"
 
 // Cell memory, program memory, cell pointer,
 // instruction pointer, end (of program) pointer.
 unsigned char *cells, *program, *cp, *ip, *ep;
+
+// Global mode variables.
+int quiet = 0, step = 0;
 
 void bf_show_state(void);
 
@@ -21,8 +25,22 @@ int main(int argc, char **argv) {
 	int c, i, bl, running;
 	char *command_chars = "><+-.,[]";
 
+	// Parse options.
+	while ((c = getopt(argc, argv, OPTION_CHARS)) != -1) {
+		switch (c) {
+			case 'q':
+				quiet = 1;
+				break;
+			case 's':
+				step = 1;
+				break;
+		}
+	}
+
+
+
 	if (argc != 2) {
-		fprintf(stderr, "usage: %s [program text]\n", argv[0]);
+		fprintf(stderr, "usage: %s [-sq] program text\n", argv[0]);
 		exit(EXIT_FAILURE);
 	}
 
@@ -52,10 +70,17 @@ int main(int argc, char **argv) {
 	// Run program.
 	running = 1;
 	while (running) {
-		// Give visual indication of current state.
-		//bf_show_state();
-		//getchar();
-		//usleep(1000000 / CLOCK_RATE);
+		if (quiet) {
+			// Don't wait; just pass through.
+		} else {
+			// Give visual indication of current state.
+			bf_show_state();
+			if (step) {
+				getchar();
+			} else {
+				usleep(1000000 / CLOCK_RATE);
+			}
+		}
 
 		// Interpret next instruction.
 		switch (*ip) {
